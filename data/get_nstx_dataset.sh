@@ -8,6 +8,6 @@ fi
 
 ## Got an error with aria2
 wget -O nstx.tar.gz https://www.dropbox.com/s/snkp5u65kmh957c/nstx.tar.gz
-tar xzf nstx.tgz
+tar xzf nstx.tar.gz
 cd nstx
 python gen_nstx_dataset.py
