@@ -1,0 +1,6 @@
+classes=2
+train=data/nstx/train.txt
+valid=data/nstx/valid.txt
+names=data/nstx/nstx.names
+backup=backup/
+eval=nstx

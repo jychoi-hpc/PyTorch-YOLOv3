@@ -6,7 +6,8 @@ else
     WGET='wget -c'
 fi
 
-$WGET https://www.dropbox.com/s/snkp5u65kmh957c/nstx.tar.gz?dl=0
+## Got an error with aria2
+wget -O nstx.tar.gz https://www.dropbox.com/s/snkp5u65kmh957c/nstx.tar.gz
 tar xzf nstx.tgz
 cd nstx
 python gen_nstx_dataset.py
