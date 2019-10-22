@@ -36,6 +36,7 @@ if __name__ == "__main__":
     parser.add_argument("--evaluation_interval", type=int, default=1, help="interval evaluations on validation set")
     parser.add_argument("--compute_map", default=False, help="if True computes mAP every tenth batch")
     parser.add_argument("--multiscale_training", default=True, help="allow for multi-scale training")
+    parser.add_argument("--epoch_start", type=int, default=0, help="eport starting index")
     opt = parser.parse_args()
     print(opt)
 
@@ -93,7 +94,7 @@ if __name__ == "__main__":
         "conf_noobj",
     ]
 
-    for epoch in range(opt.epochs):
+    for epoch in range(opt.epoch_start, opt.epoch_start+opt.epochs):
         model.train()
         start_time = time.time()
         for batch_i, (_, imgs, targets) in enumerate(dataloader):
