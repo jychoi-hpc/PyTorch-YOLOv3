@@ -7,14 +7,16 @@ x = sorted(glob.glob('images/*.jpg'))
 
 train, test = train_test_split(x, test_size = 0.2)
 
+prefix='data/poincare'
+
 f = open('train.txt', 'w')
 for fn in train:
-    f.write(os.path.abspath(fn)+'\n')
+    f.write(os.path.join(prefix, fn)+'\n')
 f.close()
 
 f = open('valid.txt', 'w')
 for fn in test:
-    f.write(os.path.abspath(fn)+'\n')
+    f.write(os.path.join(prefix, fn)+'\n')
 f.close()
 
 print("Done.")

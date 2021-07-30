@@ -2,5 +2,3 @@ classes=1
 train=data/poincare/train.txt
 valid=data/poincare/valid.txt
 names=data/poincare/poincare.names
-backup=backup/
-eval=poincare
