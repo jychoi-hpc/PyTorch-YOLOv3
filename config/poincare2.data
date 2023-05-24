@@ -1,0 +1,4 @@
+classes=1
+train=data/poincare2/train.txt
+valid=data/poincare2/valid.txt
+names=data/poincare2/poincare.names

@@ -102,6 +102,7 @@ if __name__ == "__main__":
         plt.figure()
         fig, ax = plt.subplots(1)
         ax.imshow(img)
+        print (img.shape)
 
         # Draw bounding boxes and labels of detections
         if detections is not None:
@@ -111,26 +112,33 @@ if __name__ == "__main__":
             n_cls_preds = len(unique_labels)
             bbox_colors = random.sample(colors, n_cls_preds)
             for x1, y1, x2, y2, conf, cls_conf, cls_pred in detections:
-
-                print("\t+ Label: %s, Conf: %.5f" % (classes[int(cls_pred)], cls_conf.item()))
+                x1 = max(0, x1)
+                x2 = min(x2, img.shape[0])
+                y1 = max(0, y1)
+                y2 = min(y2, img.shape[1])
 
                 box_w = x2 - x1
                 box_h = y2 - y1
+                if (box_w > img.shape[0]) or (box_w > img.shape[1]):
+                    continue
+
+                print("\t+ Label: %s, Conf: %.5f" % (classes[int(cls_pred)], cls_conf.item()))
+
 
                 color = bbox_colors[int(np.where(unique_labels == int(cls_pred))[0])]
                 # Create a Rectangle patch
-                bbox = patches.Rectangle((x1, y1), box_w, box_h, linewidth=2, edgecolor=color, facecolor="none")
+                bbox = patches.Rectangle((x1, y1), box_w, box_h, linewidth=1, edgecolor=color, facecolor="none")
                 # Add the bbox to the plot
                 ax.add_patch(bbox)
                 # Add label
-                plt.text(
-                    x1,
-                    y1,
-                    s=classes[int(cls_pred)],
-                    color="white",
-                    verticalalignment="top",
-                    bbox={"color": color, "pad": 0},
-                )
+                # plt.text(
+                #     x1,
+                #     y1,
+                #     s=classes[int(cls_pred)],
+                #     color="white",
+                #     verticalalignment="top",
+                #     bbox={"color": color, "pad": 0},
+                # )
 
         # Save generated image with detections
         plt.axis("off")
